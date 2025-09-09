@@ -138,7 +138,7 @@ const displayTreeNews = (plantsNews) => {
 
   plantsNews.forEach((plantNews) => {
     treeNewsContainer.innerHTML += `
-                                         <div id="${plantNews.id}" class="card bg-base-100  shadow-sm w-75 p-4 ">
+     <div id="${plantNews.id}" class="card bg-base-100 shadow-sm w-75 p-4 ">
  
     <img  src="${plantNews.image}"
       class=" w-full h-80 rounded-xl />
@@ -202,9 +202,15 @@ treeNewsContainer.addEventListener('click', (e) => {
 //Display Add to cart
 
 const displayAddContainer = (carts) => {
- 
+         let total = 0;
+
+        
   cartContainer.innerHTML = "";
   carts.forEach((cart) => {
+
+     const priceNumber = Number(cart.price.slice(1))
+     total += priceNumber
+
     cartContainer.innerHTML += `
      <div class="flex justify-between mt-2 bg-white mb-2">
             <div class="flex flex-col ">
@@ -216,6 +222,13 @@ const displayAddContainer = (carts) => {
      </div>
    `
   })
+
+  cartContainer.innerHTML += `
+              <div class="flex justify-between mt-4 ">
+           <h2 class="text-lg font-semibold">Total :</h2>
+           <p class="text-lg font-semibold">${total}</p>
+        </div>
+  `
 }
 
 //Delete cart
